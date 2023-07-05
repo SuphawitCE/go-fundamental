@@ -1,0 +1,27 @@
+---
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # - name: Run lint
+      #   run: |
+      #     export DOCKER_BUILDKIT=1
+      #     make lint
+
+      # - name: Run build
+      #   run: |
+      #     export DOCKER_BUILDKIT=1
+      #     make build
+
+      # - name: Run test
+      #   run: |
+      #     export DOCKER_BUILDKIT=1
+      #     make test
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
