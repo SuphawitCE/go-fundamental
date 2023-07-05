@@ -39,7 +39,7 @@ func main() {
 	//* Store your first & last initials in two variables using block assignment
 	var (
 		firstInitial = "J"
-		lastInitial = "L"
+		lastInitial  = "L"
 	)
 	fmt.Println("Initials=", firstInitial, lastInitial)
 
