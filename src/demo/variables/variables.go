@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	var myName = "Bank"
-	fmt.Println("My name is", myName, myName);
+	fmt.Println("My name is", myName, myName)
 
 	var name string = "cat"
 	fmt.Println("name = ", name)
@@ -24,9 +24,9 @@ func main() {
 	sum = part1 + part2
 	fmt.Println("sum =", sum)
 
-	var(
+	var (
 		lessonName = "Variables"
-		lessonType =  "Demo"
+		lessonType = "Demo"
 	)
 	fmt.Println("lessonName=", lessonName)
 	fmt.Println("lessonType=", lessonType)
