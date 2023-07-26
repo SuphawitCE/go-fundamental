@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"sync"
+	"time"
+)
+
+func main() {
+	rand.Seed(time.Now().UnixNano())
+
+	var waitGroup sync.WaitGroup
+	counter := 0
+
+	for i := 0; i < 5; i++ {
+		waitGroup.Add(1)
+		counter += 1
+		go func() {
+			defer func() {
+				fmt.Println(counter, "goroutines remaining")
+				counter -= 1
+				waitGroup.Done()
+			}()
+			duration := time.Duration(rand.Intn(500) * int(time.Millisecond))
+			fmt.Println("Waiting for", duration)
+			time.Sleep(duration)
+		}()
+	}
+	fmt.Println("waiting for goroutines to finish")
+	waitGroup.Wait()
+	fmt.Println("done!")
+}
