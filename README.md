@@ -17,6 +17,26 @@ git clone git@github.com:SuphawitCE/go-fundamental.git
 cd go-fundamental/
 ```
 
+## Running on your local machine
+
+Compile and run.
+```sh
+go run filename.go
+```
+
+Compile and build execution file.
+```sh
+go build filename.go  # build execution file
+./filename  # Run execution file
+```
+
+### Hot reload
+Required to have Node.js on your local machine.
+
+```sh
+npx go-mon filename.go
+```
+
 ## Project structure
 
 - `src/`
