@@ -1,0 +1,7 @@
+go 1.20
+
+use (
+	.
+	./src/random/cart
+	./src/random/cart/input
+)
