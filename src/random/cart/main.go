@@ -14,27 +14,24 @@ The cart could be able to display both specific and all product and cost calcula
 The cart should not display a product if an attribute is not define
 */
 
+/*
+Output:
+title, price, totalPrice
+*/
+
 func main() {
 	fmt.Println("Cart")
-
 	// Receive input from user
-
 	ids := input.ReadInputFromKeyBoard()
-
 	fmt.Println("ProductIds:", ids)
 
-	// fmt.Println("input:", input.ReadInputFromKeyBoard())
-	// fmt.Println("gg", testpkg.greet())
-
-	// var name string
-
-	// fmt.Print("Enter your name: ")
-
-	// _, err := fmt.Scan(&name)
-
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// fmt.Printf("Hello %s!\n", name)
+	product := input.GetCart()
+	fmt.Println("Product:", product[0])
+	var temp []input.Product
+	for _, item := range ids {
+		fmt.Println("item", item)
+		product[item-1].Description = ""
+		temp = append(temp, product[item-1])
+	}
+	fmt.Println("temp:", temp)
 }
