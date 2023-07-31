@@ -1,40 +1,35 @@
 package input
 
 import (
+	"cart/spec"
 	"encoding/json"
-	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
-type Product struct {
-	ID          int     `json:"id"`
-	Title       string  `json:"title"`
-	Price       float64 `json:"price"`
-	Description string  `json:"description"`
-	Category    string  `json:"category"`
-	Image       string  `json:"image"`
-}
-
-func GetCart() []Product {
-	fmt.Println("GetCart")
+// Fetch products from the API
+func FetchProducts() ([]spec.Product, error) {
 	url := "https://fakestoreapi.com/products"
 
 	// Send GET request
 	response, err := http.Get(url)
-
 	if err != nil {
-		fmt.Println("Get product error", err)
-		// return
+		return nil, err
 	}
-
 	defer response.Body.Close()
 
-	// Parse JSON response
-	var products []Product
-	err = json.NewDecoder(response.Body).Decode(&products)
+	// Read response body
+	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Println("Error parsing JSON:", err)
-		// return
+		return nil, err
 	}
-	return products
+
+	// Parse JSON response
+	var products []spec.Product
+	err = json.Unmarshal(body, &products)
+	if err != nil {
+		return nil, err
+	}
+
+	return products, nil
 }

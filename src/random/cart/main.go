@@ -2,36 +2,39 @@ package main
 
 import (
 	"cart/input"
+	"cart/spec"
+	"cart/utils"
 	"fmt"
 )
 
-/*
-Implement cart functionality
-Get products from https://fakestoreapi.com/products
-User could purchase any product based on product id
-The cart could be able to handle CRUD (CREATE, READ, UPDATE, UPDATE) product
-The cart could be able to display both specific and all product and cost calculation with US concurrency
-The cart should not display a product if an attribute is not define
-*/
-
-/*
-Output:
-title, price, totalPrice
-*/
+// Print the cart items
+func printCart(cart *spec.Cart) {
+	fmt.Println("Cart:")
+	for _, item := range cart.Items {
+		fmt.Printf("Product ID: %d, Title: %s, Quantity: %d\n", item.Product.ID, item.Product.Title, item.Quantity)
+	}
+	fmt.Println("-----------------------")
+}
 
 func main() {
-	fmt.Println("Cart")
-	// Receive input from user
-	ids := input.ReadInputFromKeyBoard()
-	fmt.Println("ProductIds:", ids)
-
-	product := input.GetCart()
-	fmt.Println("Product:", product[0])
-	var temp []input.Product
-	for _, item := range ids {
-		fmt.Println("item", item)
-		product[item-1].Description = ""
-		temp = append(temp, product[item-1])
+	// Fetch mock product data from the API
+	products, err := input.FetchProducts()
+	if err != nil {
+		fmt.Println("Error fetching product data:", err)
+		return
 	}
-	fmt.Println("temp:", temp)
+
+	// Create a cart
+	cart := spec.Cart{}
+
+	// Add some products to the cart
+	utils.AddToCart(&cart, products[0], 2)
+	utils.AddToCart(&cart, products[1], 1)
+
+	// Print the cart
+	printCart(&cart)
+
+	// Remove a product from the cart
+	utils.RemoveFromCart(&cart, products[0].ID)
+	printCart(&cart)
 }
