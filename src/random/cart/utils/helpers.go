@@ -5,7 +5,7 @@ import (
 )
 
 // Add a product to the cart
-func AddToCart(cart *spec.Cart, product spec.Product, quantity int) {
+func AddToCart(cart *spec.Cart, product spec.Product, quantity int, productId int) {
 	cartItem := spec.CartItem{
 		Product:  product,
 		Quantity: quantity,

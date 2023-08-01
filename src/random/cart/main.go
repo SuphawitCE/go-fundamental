@@ -19,6 +19,7 @@ func printCart(cart *spec.Cart) {
 func main() {
 	// Fetch mock product data from the API
 	products, err := input.FetchProducts()
+	productIds, productQuantity := input.ReadInputFromKeyBoard()
 	if err != nil {
 		fmt.Println("Error fetching product data:", err)
 		return
@@ -26,10 +27,12 @@ func main() {
 
 	// Create a cart
 	cart := spec.Cart{}
+	fmt.Println("pp", products[0])
 
 	// Add some products to the cart
-	utils.AddToCart(&cart, products[0], 2)
-	utils.AddToCart(&cart, products[1], 1)
+	for i := 0; i < len(productIds); i++ {
+		utils.AddToCart(&cart, products[productIds[i]], productQuantity[i], productIds[i])
+	}
 
 	// Print the cart
 	printCart(&cart)
