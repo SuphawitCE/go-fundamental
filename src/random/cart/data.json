@@ -1,0 +1,15 @@
+{
+  "product": {
+    "id": 1,
+    "title": "iPhone",
+    "price": "2,000 USD"
+  },
+  "person": {
+    "firstName": "Rahul",
+    "nickName": "Bank",
+    "persionality": {
+      "smile": true,
+      "greeting": true
+    }
+  }
+}
